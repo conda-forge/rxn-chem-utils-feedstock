@@ -1,13 +1,13 @@
 {% set name = "rxn-chem-utils" %}
-{% set version = "1.5.0" %}
+{% set version = "1.6.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/rxn-chem-utils-{{ version }}.tar.gz
-  sha256: 16e81a728ce4e87449bbd304aac3a1dc8fe9df73ca7d31be21ebec2516c9ded4
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 54f2973b32cdd67625bbc5441984323235b17b20e00dc5b5a83c20f64850bacb
 
 build:
   entry_points:
@@ -18,7 +18,7 @@ build:
     - rxn-rdf-to-smiles = rxn.chemutils.scripts.rdf_to_smiles:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
