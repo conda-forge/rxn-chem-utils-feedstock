@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
   sha256: 54f2973b32cdd67625bbc5441984323235b17b20e00dc5b5a83c20f64850bacb
 
 build:
@@ -18,16 +18,16 @@ build:
     - rxn-rdf-to-smiles = rxn.chemutils.scripts.rdf_to_smiles:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - setuptools >=59.2.0
     - wheel
     - pip
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - attrs >=21.2.0
     - click >=7.0
     - rxn-utils >=1.1.9
@@ -45,6 +45,7 @@ test:
     - rxn-rdf-to-smiles --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   summary: Chemistry-related utilities
